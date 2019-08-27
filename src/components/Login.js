@@ -1,12 +1,19 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import GoogleButton from "react-google-button";
 
 const Login = props => {
+  const { onSignIn } = props;
   return (
-    <div className="login">
-      <Button variant="success" onClick={props.onSignIn}>
-        Sign-in with Google
-      </Button>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        margin: "40px"
+      }}
+    >
+      <GoogleButton onClick={onSignIn} />
     </div>
   );
 };
