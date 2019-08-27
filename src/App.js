@@ -10,7 +10,7 @@ class App extends Component {
 
     this.state = {
       messages: [],
-      author: '',
+      author: this.generateAuthorName(),
       message: ''
     };
   }
@@ -18,18 +18,30 @@ class App extends Component {
   componentDidMount() {
     const db = firebase.firestore();
 
-    db.collection('messages').onSnapshot(querySnapshot => {
-      const messages = [];
-      querySnapshot.forEach(doc => {
-        const message = doc.data();
-        message.id = doc.id;
-        messages.push(message);
-      });
+    db.collection('messages')
+      .orderBy('dateSent')
+      .onSnapshot(querySnapshot => {
+        const messages = [];
+        querySnapshot.forEach(doc => {
+          const message = doc.data();
+          message.id = doc.id;
+          messages.push(message);
+        });
 
-      this.setState({
-        messages
+        this.setState({
+          messages
+        });
       });
-    });
+  }
+
+  generateAuthorName() {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    const charactersLength = characters.length;
+    for (var i = 0; i < 8; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
   }
 
   handleSubmit = e => {
@@ -43,14 +55,7 @@ class App extends Component {
     });
 
     this.setState({
-      author: '',
       message: ''
-    });
-  };
-
-  handleAuthorChange = e => {
-    this.setState({
-      author: e.target.value
     });
   };
 
@@ -63,23 +68,22 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <form>
-          <input
-            type="text"
-            value={this.state.author}
-            onChange={this.handleAuthorChange}
-            placeholder="name"
-          />
-          <input
-            type="text"
-            value={this.state.message}
-            onChange={this.handleMessageChange}
-            placeholder="message"
-          />
-          <button onClick={this.handleSubmit}>Submit</button>
-        </form>
+        <div className="inputs">
+          <form>
+            <input
+              className="input-box"
+              type="text"
+              value={this.state.message}
+              onChange={this.handleMessageChange}
+              placeholder="message"
+            />
+            <button onClick={this.handleSubmit} className="input-button">
+              Submit
+            </button>
+          </form>
+        </div>
 
-        <div>
+        <div className="messages">
           {this.state.messages.map(message => (
             <div key={message.id} className="message">
               <span>{message.author}</span>
