@@ -26,6 +26,7 @@ class App extends Component {
         querySnapshot.forEach(doc => {
           const message = doc.data();
           message.id = doc.id;
+          message.dateSent = message.dateSent.toDate();
           messages.push(message);
         });
 
@@ -119,6 +120,7 @@ class App extends Component {
             >
               <p>{message.author}</p>
               <Alert.Heading>{message.message}</Alert.Heading>
+              <small>{message.dateSent.toLocaleString()}</small>
             </Alert>
           ))}
         </div>
