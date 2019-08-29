@@ -2,7 +2,7 @@
   "name": "react-chat",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://baiin.github.io/react-chat",
+  "homepage": "https://baiin.github.io/react-chat/",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "firebase": "^6.4.2",
