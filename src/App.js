@@ -16,12 +16,7 @@ class App extends Component {
     provider.setCustomParameters({
       login_hint: "user@example.com"
     });
-    firebase
-      .auth()
-      .signInWithPopup(provider)
-      .catch(error => {
-        console.log(error);
-      });
+    firebase.auth().signInWithPopup(provider);
   };
 
   signOut = () => {

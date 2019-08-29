@@ -14,9 +14,19 @@ const Header = props => {
     >
       <Navbar.Brand>react-chat</Navbar.Brand>
       {props.user && (
-        <Button variant="danger" onClick={props.onSignOut}>
-          signout
-        </Button>
+        <span>
+          {props.user.photoURL && (
+            <img
+              src={props.user.photoURL}
+              alt="profile"
+              height="35px"
+              style={{ marginRight: "10px", borderRadius: "20px" }}
+            />
+          )}
+          <Button variant="danger" onClick={props.onSignOut}>
+            signout
+          </Button>
+        </span>
       )}
     </Navbar>
   );

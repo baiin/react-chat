@@ -103,24 +103,35 @@ class Home extends Component {
           </Row>
         </form>
 
-        <div className="messages" id="messages">
-          {this.state.messages.map(message => (
-            <Alert
-              key={message.id}
-              className={
-                message.author === this.state.author
-                  ? "bubble right-bubble"
-                  : "bubble left-bubble"
-              }
-              variant={
-                message.author === this.state.author ? "success" : "danger"
-              }
-            >
-              <p>{message.author}</p>
-              <Alert.Heading>{message.message}</Alert.Heading>
-              <small>{message.dateSent.toLocaleString()}</small>
-            </Alert>
-          ))}
+        <div
+          className="messages"
+          id="messages"
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center"
+          }}
+        >
+          <div style={{ flex: 0.5 }}>
+            {this.state.messages.map(message => (
+              <Alert
+                key={message.id}
+                className={
+                  message.author === this.state.author
+                    ? "bubble right-bubble"
+                    : "bubble left-bubble"
+                }
+                variant={
+                  message.author === this.state.author ? "primary" : "success"
+                }
+              >
+                <p>{message.author}</p>
+                <Alert.Heading>{message.message}</Alert.Heading>
+                <small>{message.dateSent.toLocaleString()}</small>
+              </Alert>
+            ))}
+          </div>
         </div>
       </React.Fragment>
     );
