@@ -36,7 +36,7 @@ class App extends Component {
       <React.Fragment>
         <Header user={this.state.user} onSignOut={this.signOut}></Header>
 
-        <Router>
+        <Router basename="/">
           <Route
             path="/"
             exact
