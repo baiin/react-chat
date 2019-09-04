@@ -12,7 +12,7 @@ const Header = props => {
         alignItems: "center"
       }}
     >
-      <Navbar.Brand>react-chat</Navbar.Brand>
+      <Navbar.Brand>react-chat v2</Navbar.Brand>
       {props.user && (
         <span>
           {props.user.photoURL && (
